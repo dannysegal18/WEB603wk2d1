@@ -1,26 +1,31 @@
 class FileInput extends React.Component {
-    constructor(props) {
-    
-      super(props);
-      
-    }
-    handleSubmit(event) {
-      
-    }
-  
-    render() {
-   
-      return (
-        <form onSubmit={this.handleSubmit}>
-          
-          <br />
-          <button type="submit">Submit</button>
-        </form>
-      );
-    }
+  constructor(props) {
+    super(props);
+    this.handleSubmit = this.handleSubmit.bind(this);
+    this.fileInput = React.createRef();
   }
-  
-  ReactDOM.render(
-    <FileInput />,
-    document.getElementById('root')
-  );
+  handleSubmit(event) {
+    alert(
+      `Selected file - ${this.fileInput.curent.files[0].name}`
+    );
+  }
+
+  render() {
+ 
+    return (
+      <form onSubmit={this.handleSubmit}>
+        <label>
+          Upload file: 
+          <input type="file" ref={this.fileInput} />
+        </label>
+        <br />
+        <button type="submit">Submit</button>
+      </form>
+    );
+  }
+}
+
+ReactDOM.render(
+  <FileInput />,
+  document.getElementById('root')
+);
